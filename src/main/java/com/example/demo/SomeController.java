@@ -15,7 +15,7 @@ public class SomeController {
 
     @GetMapping("/")
     public ResponseEntity someEndpoint() {
-        someService.fails();
+        someService.works();
         return ResponseEntity.ok("nothing to see");
     }
 }
