@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import java.util.List;
 
 @Slf4j
 @Service
@@ -44,6 +45,9 @@ public class SomeService {
                 && sessionFactory.getCurrentSession() == entityManager.unwrap(null)
                 && sessionFactory.getCurrentSession() == EntityManagerFactoryUtils.getTransactionalEntityManager(entityManagerFactory);
         log.info("same session instance {}", isSameSession);
+
+        List<SomeEntity> results = entityManager.createQuery("select se from SomeEntity se", SomeEntity.class).getResultList();
+        log.info("results {}", results);
     }
 
 }
